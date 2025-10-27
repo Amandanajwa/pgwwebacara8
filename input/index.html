@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form Input Data Kecamatan</title>
+
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #b993d6, #8ca6db);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .form-card {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      width: 400px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .form-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .form-title {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 700;
+      color: #5a189a;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(90deg, #7b2cbf, #9d4edd);
+      border: none;
+      color: white;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(90deg, #5a189a, #7b2cbf);
+      transform: scale(1.03);
+    }
+
+    #informasi {
+      margin-top: 15px;
+      color: red;
+      font-weight: 500;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-card">
+    <h2 class="form-title">Form Input Data</h2>
+
+    <form action="input.php" onsubmit="return validateForm()" method="post">
+      <div class="mb-3">
+        <label for="kec" class="form-label">Kecamatan</label>
+        <input type="text" class="form-control" id="kec" name="kecamatan" placeholder="Masukkan nama kecamatan">
+      </div>
+
+      <div class="mb-3">
+        <label for="long" class="form-label">Longitude</label>
+        <input type="text" class="form-control" id="long" name="longitude" placeholder="Contoh: 110.3671">
+      </div>
+
+      <div class="mb-3">
+        <label for="lat" class="form-label">Latitude</label>
+        <input type="text" class="form-control" id="lat" name="latitude" placeholder="Contoh: -7.7956">
+      </div>
+
+      <div class="mb-3">
+        <label for="luas" class="form-label">Luas (km²)</label>
+        <input type="text" class="form-control" id="luas" name="luas" placeholder="Masukkan luas wilayah">
+      </div>
+
+      <div class="mb-3">
+        <label for="jml_ppdk" class="form-label">Jumlah Penduduk</label>
+        <input type="text" class="form-control" id="jml_ppdk" name="jumlah_penduduk" placeholder="Masukkan jumlah penduduk">
+      </div>
+
+      <button type="submit" class="btn btn-submit">💜 Submit</button>
+    </form>
+
+    <p id="informasi"></p>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function validateForm(event) {
+      let luas = document.getElementById("luas").value;
+      let text = "";
+
+      if (isNaN(luas) || luas < 1) {
+        text = "⚠️ Data luas harus berupa angka positif!";
+        document.getElementById("informasi").innerHTML = text;
+        event.preventDefault();
+        return false;
+      }
+
+      document.getElementById("informasi").innerHTML = "";
+      return true;
+    }
+  </script>
+
+</body>
+</html>
